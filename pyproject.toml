@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "robot-simulator"
+version = "0.1.0"
+description = ""
+authors = ["Jose Mari Escalante <jmescalante.work@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+app = "robot_simulator.app:main"
+
+[tool.poetry.dependencies]
+python = "~3.12"
+django = "^5.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
