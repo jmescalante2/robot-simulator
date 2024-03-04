@@ -10,39 +10,9 @@ class Robot:
     """
     A programmable robot that can navigate a two-dimensional table based on commands.
 
-    This class allows a robot to be placed on a specified location on the table with
-    a specific orientation, move forward, rotate left or right, and report its current
-    position and direction. The robot's movements are constrained by the dimensions
-    of the table, and it will not move if an operation would result in it falling off.
-
-    Attributes:
-        table (Table): The table on which the robot moves. Defaults to a 5x5 table.
-        location (Point): The current location of the robot on the table. Initialized
-                          to an invalid location (-1, -1) to signify the robot is not
-                          yet placed on the table.
-        direction (Direction): The current direction the robot is facing. It is None
-                               until the robot is placed.
-        verbose (bool): If True, the robot will print messages for invalid operations.
-                        Defaults to True.
-
-    Methods:
-        place(x: int, y: int, facing: Direction) -> bool:
-            Places the robot at a specified location with a specified direction on the table.
-
-        on_table() -> bool:
-            Checks if the robot's current location is within the bounds of the table.
-
-        move() -> bool:
-            Moves the robot one unit forward in its current direction if possible.
-
-        left() -> None:
-            Rotates the robot 90 degrees to the left (counter-clockwise) without changing its position.
-
-        right() -> None:
-            Rotates the robot 90 degrees to the right (clockwise) without changing its position.
-
-        report(log_file: Union[str, "sys.stdout"] = sys.stdout) -> None:
-            Prints the robot's current location and direction to the specified log file or stdout.
+    This class enables the robot to be placed on a table with a specific orientation,
+    move forward, rotate left or right, and report its current position and direction.
+    The robot's movements are constrained by the table's dimensions.
     """
 
     __MOVES = {
@@ -53,6 +23,13 @@ class Robot:
     }
 
     def __init__(self, table: Table = Table(5, 5), verbose: bool = True) -> None:
+        """
+        Initializes the Robot with a given table and verbosity setting.
+
+        Parameters:
+            table (Table): The table on which the robot moves. Defaults to a 5x5 table.
+            verbose (bool): If True, the robot will print messages for the status of the operations. Defaults to True.
+        """
         self.table = table
         self.location = Point(
             -1, -1
@@ -61,7 +38,17 @@ class Robot:
         self.verbose = verbose
 
     def place(self, x: int, y: int, facing: Direction) -> bool:
-        """Places the robot at a specified location and direction on the table."""
+        """
+        Places the robot at a specified location with a specified direction on the table.
+
+        Parameters:
+            x (int): The x-coordinate of the location.
+            y (int): The y-coordinate of the location.
+            facing (Direction): The direction the robot will face.
+
+        Returns:
+            bool: True if the placement is successful, False otherwise.
+        """
         potential_location = Point(x, y)
         if potential_location.on_table(self.table) and facing in Direction:
             self.location = potential_location
@@ -70,41 +57,66 @@ class Robot:
         return False
 
     def on_table(self) -> bool:
+        """
+        Checks if the robot's current location is within the bounds of the table.
+
+        Returns:
+            bool: True if the robot is on the table, False otherwise.
+        """
         return self.location.on_table(self.table)
 
     def move(self) -> bool:
-        """Moves the robot one unit forward in the direction it is currently facing."""
+        """
+        Moves the robot one unit forward in its current direction if possible.
+
+        Returns:
+            bool: True if the move is successful, False otherwise.
+        """
         if self.on_table():
             new_location = self.location + self.__MOVES[self.direction]
             if new_location.on_table(self.table):
                 self.location = new_location
                 return True
-        if self._verbose:
-            print(
-                "Move not allowed. Ensure the robot is correctly placed on the table."
-            )
         return False
 
     def left(self) -> None:
-        """Rotates the robot to face left of its current direction."""
+        """
+        Rotates the robot 90 degrees to the left (counter-clockwise) without changing its position.
+
+        Returns:
+            bool: True if the robot turned to its left successfully, False otherwise.
+        """
         if self.on_table():
             self.direction = self.direction.left()
-        elif self.verbose:
-            print("Invalid command. Place the robot first.")
+            return True
+        return False
 
     def right(self) -> None:
-        """Rotates the robot to face right of its current direction."""
+        """
+        Rotates the robot 90 degrees to the right (clockwise) without changing its position.
+
+        Returns:
+            bool: True if the robot turned to its right successfully, False otherwise.
+        """
         if self.on_table():
             self.direction = self.direction.right()
-        elif self.verbose:
-            print("Invalid command. Place the robot first.")
+            return True
+        return False
 
     def report(self, log_file: Union[str, "sys.stdout"] = sys.stdout) -> None:
-        """Reports the current location and direction of the robot."""
+        """
+        Prints the robot's current location and direction to the specified log file or stdout.
+
+        Parameters:
+            log_file (Union[str, "sys.stdout"]): The output destination for the report. Defaults to stdout.
+
+        Returns:
+            bool: True if the robot turned to its left successfully, False otherwise.
+        """
         if self.on_table():
             print(
                 f"{self.location.x}, {self.location.y}, {self.direction.name}",
                 file=log_file,
             )
-        elif self.verbose:
-            print("Invalid command. Place the robot first.")
+            return True
+        return False

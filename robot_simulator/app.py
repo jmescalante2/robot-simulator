@@ -6,9 +6,13 @@ def main():
     robot = Robot(verbose=True)
     processor = CommandProcessor(robot)
     commands = [
+        "MOVE",
         "PLACE 0,0,NORTH",
         "MOVE",
         "REPORT",
+        "dsfsdf",  # Invalid
+        "PLACE -1,0,NORTH",  # Invalid
+        "PLACE 0,0,SDFDSF",  # Invalid
         "PLACE 0,0,NORTH",
         "LEFT",
         "REPORT",
