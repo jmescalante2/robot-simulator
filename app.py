@@ -14,7 +14,7 @@ def main():
         SAMPLE_DIRECTORY, "test_input_commands.txt"
     )
 
-    # Construct the file name
+    # Construct the report file name
     now = datetime.now()
     report_file_name = f"robot-report-{now.strftime("%Y-%m-%d")}-{now.strftime("%H-%M-%S")}-{uuid.uuid4()}.txt"
     report_file_path = Path.joinpath(REPORT_DIRECTORY, report_file_name)

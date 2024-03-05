@@ -1,5 +1,4 @@
 import sys
-from typing import Union
 
 from robot_simulator.direction import Direction
 from robot_simulator.point import Point

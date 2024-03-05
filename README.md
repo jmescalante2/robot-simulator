@@ -47,7 +47,9 @@ poetry run pytest
 ```
 
 ## Usage
-1. Go to the samples folder and check or modify the contents test_input_commands.txt
+1. Go to the samples folder and check or modify the contents of test_input_commands.txt. Valid commands are:
+"PLACE &lt;X&gt;, &lt;Y&gt;, &lt;DIRECTION&gt;", "MOVE", "LEFT", "RIGHT", and "REPORT" where X and Y are non-negative integers, and the DIRECTION is one of NORTH, EAST, SOUTH, WEST.
+
 ```bash
 cd <project-root-directory>/samples
 nano test_input_commands.txt
@@ -56,7 +58,10 @@ nano test_input_commands.txt
 ```bash
 poetry run app
 ``` 
-The status of each command will be displayed on the terminal and the robot's reports will be saved in a file under the <project-root-directory>/samples/reports directory
+The status of each command will be displayed on the terminal and the robot's reports will be saved in a file under the &lt;project-root-directory&gt;/samples/reports directory
+
+## Assumptions 
+1. Only one robot can deployed at a time. Issuing subsequent place commands will only reposition the existing robot.
 
 ## Future Improvements
 Given additional time, we could:
@@ -68,6 +73,7 @@ Given additional time, we could:
 6. Introduce Undo/Redo functionality, providing users with the ability to revert and reapply actions.
 7. Establish a CI/CD pipeline, particularly as the project scales, to streamline development processes, automate testing, and ensure reliable deployments.
 8. Parameterize the script using argparse or a more advanced tool such as Pydantic for handling multiple configuration sources, enhancing usability and configurability.
-9. Integrate Git hooks for an automated code formatter that adheres to PEP standards, ensuring consistent coding style across the project. This can be accomplished by using a tool like pre-commit coupled with formatters like black or autopep8. Here's a step-by-step guide
+9. Integrate Git hooks for an automated code formatter that adheres to PEP standards, ensuring consistent coding style across the project. This can be accomplished by using a tool like pre-commit coupled with formatters like black or autopep8. Here's a step-by-step guide.
+10. Allow multiple robots to be deployed 
  
 
