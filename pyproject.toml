@@ -6,7 +6,7 @@ authors = ["Jose Mari Escalante <jmescalante.work@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-app = "robot_simulator.app:main"
+app = "app:main"
 
 [tool.poetry.dependencies]
 python = "~3.12"
