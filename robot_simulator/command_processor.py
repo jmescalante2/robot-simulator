@@ -73,7 +73,7 @@ class CommandProcessor:
                 print(f"[FAILED] {command}")
         else:
             print(
-                'Unsupported command. Only "PLACE", "MOVE", "LEFT", "RIGHT", and "REPORT" are supported.'
+                'Unsupported command. Only "PLACE <X int>, <Y int>, <DIRECTION NORTH|EAST|WEST|SOUTH>", "MOVE", "LEFT", "RIGHT", and "REPORT" are supported.'
             )
 
     def execute_from_file(self, filepath: str) -> None:
