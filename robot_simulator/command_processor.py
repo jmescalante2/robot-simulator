@@ -63,17 +63,26 @@ class CommandProcessor:
         if place_match:
             x, y, direction = place_match.groups()
             if self.robot.place(int(x), int(y), Direction[direction]):
-                print(f"PLACE({x}, {y}, {direction}) command executed successfully.")
+                print(f"[SUCCESS] PLACE({x}, {y}, {direction})")
             else:
-                print(
-                    f"PLACE({x}, {y}, {direction}) command failed. Invalid position or direction."
-                )
+                print(f"[FAILED] PLACE({x}, {y}, {direction})")
         elif command in self.commands:
             if self.commands[command]():
-                print(f"{command} command executed successfully.")
+                print(f"[SUCCESS] {command}")
             else:
-                print(f"{command} command execution failed.")
+                print(f"[FAILED] {command}")
         else:
             print(
                 'Unsupported command. Only "PLACE", "MOVE", "LEFT", "RIGHT", and "REPORT" are supported.'
             )
+
+    def execute_from_file(self, filepath: str) -> None:
+        """
+        Reads commands from a file and executes them.
+
+        Parameters:
+            filepath (str): The path to the file containing the commands.
+        """
+        with open(filepath, "r") as file:
+            for line in file:
+                self.execute(line.strip())

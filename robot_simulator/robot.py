@@ -22,7 +22,12 @@ class Robot:
         Direction.WEST: Point(-1, 0),
     }
 
-    def __init__(self, table: Table = Table(5, 5), verbose: bool = True) -> None:
+    def __init__(
+        self,
+        table: Table = Table(5, 5),
+        verbose: bool = True,
+        report_file: str = None,
+    ) -> None:
         """
         Initializes the Robot with a given table and verbosity setting.
 
@@ -36,6 +41,7 @@ class Robot:
         )  # Use an invalid initial location to denote 'not placed'
         self.direction = None
         self.verbose = verbose
+        self.report_file = report_file
 
     def place(self, x: int, y: int, facing: Direction) -> bool:
         """
@@ -103,20 +109,26 @@ class Robot:
             return True
         return False
 
-    def report(self, log_file: Union[str, "sys.stdout"] = sys.stdout) -> None:
+    def report(self) -> None:
         """
         Prints the robot's current location and direction to the specified log file or stdout.
 
         Parameters:
-            log_file (Union[str, "sys.stdout"]): The output destination for the report. Defaults to stdout.
+            report_file (Union[str, "sys.stdout"]): The output destination for the report. Defaults to stdout.
 
         Returns:
             bool: True if the robot turned to its left successfully, False otherwise.
         """
         if self.on_table():
-            print(
-                f"{self.location.x}, {self.location.y}, {self.direction.name}",
-                file=log_file,
-            )
+            if self.report_file:
+                print(
+                    f"[REPORTING] {self.location.x}, {self.location.y}, {self.direction.name}",
+                    file=open(self.report_file, "a"),
+                )
+            else:
+                print(
+                    f"[REPORTING] {self.location.x}, {self.location.y}, {self.direction.name}",
+                    file=sys.stdout,
+                )
             return True
         return False
