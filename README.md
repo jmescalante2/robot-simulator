@@ -76,5 +76,6 @@ Given additional time, we could:
 8. Integrate Git hooks for an automated code formatter that adheres to PEP standards, ensuring consistent coding style across the project. This can be accomplished by using a tool like pre-commit coupled with formatters like black or autopep8. Here's a step-by-step guide.
 9. Allow multiple robots to be deployed.
 10. Add obstructions on the table. 
+11. Further improve code quality, readability, and simplicity for improved collaboration.
  
 
