@@ -1,3 +1,4 @@
+import os
 import uuid
 from datetime import datetime
 from pathlib import Path
@@ -17,6 +18,7 @@ def main():
     now = datetime.now()
     report_file_name = f"robot-report-{now.strftime("%Y-%m-%d")}-{now.strftime("%H-%M-%S")}-{uuid.uuid4()}.txt"
     report_file_path = Path.joinpath(REPORT_DIRECTORY, report_file_name)
+    os.makedirs(REPORT_DIRECTORY, exist_ok=True)
 
     robot = Robot(verbose=True, report_file=report_file_path)
     processor = CommandProcessor(robot)
