@@ -1,5 +1,3 @@
-from io import StringIO
-
 import pytest
 
 from robot_simulator.direction import Direction

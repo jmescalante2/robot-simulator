@@ -3,7 +3,6 @@ from unittest.mock import MagicMock
 import pytest
 
 from robot_simulator.command_processor import CommandProcessor
-from robot_simulator.direction import Direction
 from robot_simulator.robot import Robot
 
 
