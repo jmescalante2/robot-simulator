@@ -73,7 +73,7 @@ Given additional time, we could:
 5. Introduce Undo/Redo functionality, providing users with the ability to revert and reapply actions.
 6. Establish a CI/CD pipeline, particularly as the project scales, to streamline development processes, automate testing, and ensure reliable deployments.
 7. Parameterize the script using argparse or a more advanced tool such as Pydantic for handling multiple configuration sources, enhancing usability and configurability.
-8. Integrate Git hooks for an automated code formatter that adheres to PEP standards, ensuring consistent coding style across the project. This can be accomplished by using a tool like pre-commit coupled with formatters like black or autopep8. Here's a step-by-step guide.
+8. Integrate Git hooks for an automated code formatter that adheres to PEP standards, ensuring consistent coding style across the project. This can be accomplished by using a tool like pre-commit coupled with formatters like black or autopep8.
 9. Allow multiple robots to be deployed.
 10. Add obstructions on the table. 
 11. Further improve code quality, readability, and simplicity for improved collaboration.
