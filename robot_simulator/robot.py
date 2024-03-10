@@ -24,7 +24,6 @@ class Robot:
     def __init__(
         self,
         table: Table = Table(5, 5),
-        verbose: bool = True,
         report_file: str = None,
     ) -> None:
         """
@@ -32,14 +31,13 @@ class Robot:
 
         Parameters:
             table (Table): The table on which the robot moves. Defaults to a 5x5 table.
-            verbose (bool): If True, the robot will print messages for the status of the operations. Defaults to True.
+            report_file (str): The file in which the robot will log its reports.
         """
         self.table = table
         self.location = Point(
             -1, -1
         )  # Use an invalid initial location to denote 'not placed'
         self.direction = None
-        self.verbose = verbose
         self.report_file = report_file
 
     def place(self, x: int, y: int, facing: Direction) -> bool:

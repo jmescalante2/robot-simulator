@@ -20,7 +20,7 @@ def main():
     report_file_path = Path.joinpath(REPORT_DIRECTORY, report_file_name)
     os.makedirs(REPORT_DIRECTORY, exist_ok=True)
 
-    robot = Robot(verbose=True, report_file=report_file_path)
+    robot = Robot(report_file=report_file_path)
     processor = CommandProcessor(robot)
     processor.execute_from_file(test_input_commands_path)
 

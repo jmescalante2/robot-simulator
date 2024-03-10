@@ -16,7 +16,7 @@ from robot_simulator.robot import Robot
     ],
 )
 def test_robot_placement(standard_table, x, y, facing, expected_result):
-    robot = Robot(table=standard_table, verbose=False)
+    robot = Robot(table=standard_table)
     assert robot.place(x, y, facing) == expected_result
 
 
